@@ -1,5 +1,5 @@
 import React from 'react';
-import { IKeycloakContextProps } from './types/KeycloakContextPropsInterface';
+import { IKeycloakContextProps } from './types/types';
 
 /**
  * Функция для создания контекста keycloak.

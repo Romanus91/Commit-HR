@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { KeycloakContext } from './KeycloakContext';
-import { IKeycloakContextProps } from './types/KeycloakContextPropsInterface';
+import { IKeycloakContextProps } from './types/types';
 
 /**
  * Хук для получения контекста keycloak.
