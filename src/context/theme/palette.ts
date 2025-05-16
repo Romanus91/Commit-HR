@@ -55,7 +55,7 @@ export const palette = {
                 disabled: '#a0aec0',
             },
             background: {
-                default: '#ffffff',
+                default: '#f0f0f0',
                 paper: '#f7fafc',
                 sidebar: '#f3f5f8',
             },

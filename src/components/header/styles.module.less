@@ -1,38 +1,31 @@
-// src/components/header/styles.module.less
+@import url('src/styles/colors.less');
+@import url('src/styles/variables.less');
+
 .toolbar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     min-height: 64px;
     padding: 0 24px;
-    background-color: #f8f9fa;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    margin-right: 80px;  /* Увеличиваем расстояние между логотипом и ссылками */
-    font-size: 20px;
-    font-weight: 700;
+    margin-right: 90px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 800;
     text-decoration: none;
-    color: #333;
-}
-
-.commitText {
-    color: #2196f3;
-}
-
-.hrText {
-    color: #333;
+    color: @blue;
+    font-family: @secondaryFont;
 }
 
 .navLinks {
     display: flex;
-    gap: 40px; /* Увеличиваем расстояние между навигационными ссылками */
+    gap: 32px; /* Увеличиваем расстояние между навигационными ссылками */
 }
 
 .navLink {
-    color: #555;
+    color: @darkGray;
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
@@ -40,21 +33,10 @@
     position: relative;
 
     &:hover {
-        color: #2196f3;
+        color: #2196f3; // TODO: уточнить у дизайнера
     }
 
     &.active {
-        color: #2196f3;
-        font-weight: 600;
-        
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #2196f3;
-        }
+        color: @black;
     }
 }

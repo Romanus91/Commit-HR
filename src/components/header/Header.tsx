@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
+import cn from 'clsx';
 import { AppBar, Toolbar, Box, Button, IconButton } from '@mui/material';
 import styles from './styles.module.less';
 import { ROUTES } from '@router/routes';
@@ -14,15 +15,12 @@ export const Header: React.FC = () => {
         return location.pathname === `/${path}`;
     };
 
+    const getNavLinkClass = (path: string) => {
+        return cn(styles.navLink, { [styles.active]: isLinkActive(path) });
+    };
+
     return (
-        <AppBar
-            position="static"
-            sx={{
-                bgcolor: '#f8f9fa',
-                color: '#333',
-                boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-            }}
-        >
+        <AppBar position="static" sx={{ boxShadow: 'none' }}>
             <Toolbar className={styles.toolbar}>
                 <Box component={Link} to="/" className={styles.logo}>
                     <span className={styles.commitText}>Commit</span>
@@ -30,28 +28,16 @@ export const Header: React.FC = () => {
                 </Box>
 
                 <nav className={styles.navLinks}>
-                    <Link
-                        to={`/${ROUTES.HOME}`}
-                        className={`${styles.navLink} ${isLinkActive(ROUTES.HOME) ? styles.active : ''}`}
-                    >
+                    <Link to={`/${ROUTES.HOME}`} className={getNavLinkClass(ROUTES.HOME)}>
                         Главная
                     </Link>
-                    <Link
-                        to={`/${ROUTES.VACANCIES}`}
-                        className={`${styles.navLink} ${isLinkActive(ROUTES.VACANCIES) ? styles.active : ''}`}
-                    >
+                    <Link to={`/${ROUTES.VACANCIES}`} className={getNavLinkClass(ROUTES.VACANCIES)}>
                         Вакансии
                     </Link>
-                    <Link
-                        to={`/${ROUTES.CANDIDATES}`}
-                        className={`${styles.navLink} ${isLinkActive(ROUTES.CANDIDATES) ? styles.active : ''}`}
-                    >
+                    <Link to={`/${ROUTES.CANDIDATES}`} className={getNavLinkClass(ROUTES.CANDIDATES)}>
                         Кандидаты
                     </Link>
-                    <Link
-                        to={`/${ROUTES.PROJECTS}`}
-                        className={`${styles.navLink} ${isLinkActive(ROUTES.PROJECTS) ? styles.active : ''}`}
-                    >
+                    <Link to={`/${ROUTES.PROJECTS}`} className={getNavLinkClass(ROUTES.PROJECTS)}>
                         Проекты
                     </Link>
                 </nav>
