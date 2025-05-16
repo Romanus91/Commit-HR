@@ -1,11 +1,11 @@
-// src/components/header/Header.tsx
 import React from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
 import { AppBar, Toolbar, Box, Button, IconButton } from '@mui/material';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styles from './styles.module.less';
 import { ROUTES } from '@router/routes';
+import { Icon, Illustration } from '@components/common/ui-kit';
+import { EColor, EIconName, EIconSize } from '@src/enums';
+import { EIllustrationName } from '@src/enums/illustration';
 
 export const Header: React.FC = () => {
     const location = useLocation();
@@ -58,7 +58,7 @@ export const Header: React.FC = () => {
 
                 <Box sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 2 }}>
                     <IconButton color="primary" aria-label="Избранное" title="Избранное" sx={{ color: '#0d6efd' }}>
-                        <StarBorderIcon />
+                        <Icon name={EIconName.STAR} color={EColor.BLUE} size={EIconSize.SMALL} />
                     </IconButton>
 
                     <Button
@@ -81,7 +81,7 @@ export const Header: React.FC = () => {
                     </Button>
 
                     <IconButton color="primary" aria-label="Профиль" title="Профиль" sx={{ color: '#0d6efd' }}>
-                        <AccountCircleIcon sx={{ fontSize: 32 }} />
+                        <Illustration name={EIllustrationName.PROFILE_MALE} />
                     </IconButton>
                 </Box>
             </Toolbar>
