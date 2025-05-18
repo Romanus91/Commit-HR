@@ -26,7 +26,7 @@ export const getThemeConfig = (mode: TMode): ThemeOptions => {
             borderRadius: 8,
         },
         typography: {
-            fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+            fontFamily: '"Montserrat", sans-serif',
             button: {
                 textTransform: 'none' as TextTransform,
                 fontWeight: 500,

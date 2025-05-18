@@ -1,11 +1,12 @@
-// src/components/header/Header.tsx
 import React from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
+import cn from 'clsx';
 import { AppBar, Toolbar, Box, Button, IconButton } from '@mui/material';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styles from './styles.module.less';
 import { ROUTES } from '@router/routes';
+import { Icon, Illustration } from '@components/common/ui-kit';
+import { EColor, EIconName, EIconSize } from '@src/enums';
+import { EIllustrationName } from '@src/enums/illustration';
 
 export const Header: React.FC = () => {
     const location = useLocation();
@@ -14,15 +15,12 @@ export const Header: React.FC = () => {
         return location.pathname === `/${path}`;
     };
 
+    const getNavLinkClass = (path: string) => {
+        return cn(styles.navLink, { [styles.active]: isLinkActive(path) });
+    };
+
     return (
-        <AppBar
-            position="static"
-            sx={{
-                bgcolor: '#f8f9fa',
-                color: '#333',
-                boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-            }}
-        >
+        <AppBar position="static" sx={{ boxShadow: 'none' }}>
             <Toolbar className={styles.toolbar}>
                 <Box component={Link} to="/" className={styles.logo}>
                     <span className={styles.commitText}>Commit</span>
@@ -30,35 +28,23 @@ export const Header: React.FC = () => {
                 </Box>
 
                 <nav className={styles.navLinks}>
-                    <Link
-                        to={`/${ROUTES.HOME}`}
-                        className={`${styles.navLink} ${isLinkActive(ROUTES.HOME) ? styles.active : ''}`}
-                    >
+                    <Link to={`/${ROUTES.HOME}`} className={getNavLinkClass(ROUTES.HOME)}>
                         Главная
                     </Link>
-                    <Link
-                        to={`/${ROUTES.VACANCIES}`}
-                        className={`${styles.navLink} ${isLinkActive(ROUTES.VACANCIES) ? styles.active : ''}`}
-                    >
+                    <Link to={`/${ROUTES.VACANCIES}`} className={getNavLinkClass(ROUTES.VACANCIES)}>
                         Вакансии
                     </Link>
-                    <Link
-                        to={`/${ROUTES.CANDIDATES}`}
-                        className={`${styles.navLink} ${isLinkActive(ROUTES.CANDIDATES) ? styles.active : ''}`}
-                    >
+                    <Link to={`/${ROUTES.CANDIDATES}`} className={getNavLinkClass(ROUTES.CANDIDATES)}>
                         Кандидаты
                     </Link>
-                    <Link
-                        to={`/${ROUTES.PROJECTS}`}
-                        className={`${styles.navLink} ${isLinkActive(ROUTES.PROJECTS) ? styles.active : ''}`}
-                    >
+                    <Link to={`/${ROUTES.PROJECTS}`} className={getNavLinkClass(ROUTES.PROJECTS)}>
                         Проекты
                     </Link>
                 </nav>
 
                 <Box sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 2 }}>
                     <IconButton color="primary" aria-label="Избранное" title="Избранное" sx={{ color: '#0d6efd' }}>
-                        <StarBorderIcon />
+                        <Icon name={EIconName.STAR} color={EColor.BLUE} size={EIconSize.SMALL} />
                     </IconButton>
 
                     <Button
@@ -81,7 +67,7 @@ export const Header: React.FC = () => {
                     </Button>
 
                     <IconButton color="primary" aria-label="Профиль" title="Профиль" sx={{ color: '#0d6efd' }}>
-                        <AccountCircleIcon sx={{ fontSize: 32 }} />
+                        <Illustration name={EIllustrationName.PROFILE_MALE} />
                     </IconButton>
                 </Box>
             </Toolbar>

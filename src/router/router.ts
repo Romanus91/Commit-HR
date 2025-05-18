@@ -1,4 +1,3 @@
-// src/router/router.ts
 import { createRouter, createRoute, createRootRoute } from '@tanstack/react-router';
 import { AppLayout } from '../components/layout';
 import { HomePage } from '../pages/Home';
@@ -7,12 +6,10 @@ import { CandidatesPage } from '../pages/Candidates';
 import { ProjectsPage } from '../pages/Projects';
 import { ROUTES } from './routes';
 
-// Создаем корневой маршрут
 const rootRoute = createRootRoute({
     component: AppLayout,
 });
 
-// Используем функцию createRoute вместо rootRoute.createRoute
 const homeRoute = createRoute({
     getParentRoute: () => rootRoute,
     path: `/${ROUTES.HOME}`,
@@ -37,17 +34,8 @@ const projectsRoute = createRoute({
     component: ProjectsPage,
 });
 
-// Определяем таблицу маршрутов
 const routeTree = rootRoute.addChildren([homeRoute, vacanciesRoute, candidatesRoute, projectsRoute]);
 
-// Создаем экземпляр роутера
 export const router = createRouter({
     routeTree,
 });
-
-// Объявляем типы для TypeScript
-declare module '@tanstack/react-router' {
-    interface Register {
-        router: typeof router;
-    }
-}
