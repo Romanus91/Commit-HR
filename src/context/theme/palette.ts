@@ -1,6 +1,9 @@
 export const palette = {
     light: {
         colors: {
+            body: {
+                main: '#ffffff',
+            },
             primary: {
                 main: '#5271ff',
                 light: '#eaefff',
@@ -84,6 +87,9 @@ export const palette = {
     },
     dark: {
         colors: {
+            body: {
+                main: '#ffffff',
+            },
             primary: {
                 main: '#5271ff',
                 light: '#4b5bab',

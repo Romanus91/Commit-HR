@@ -1,11 +1,22 @@
 @import url('src/styles/colors.less');
 @import url('src/styles/variables.less');
 
+.appBar {
+    @borderRadius: 24px;
+
+    box-shadow: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 72px;
+    border-bottom-left-radius: @borderRadius;
+    border-bottom-right-radius: @borderRadius;
+}
+
 .toolbar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    min-height: 64px;
+    height: inherit;
     padding: 0 24px;
 }
 
@@ -15,13 +26,13 @@
     line-height: 24px;
     font-weight: 800;
     text-decoration: none;
-    color: @blue;
+    color: @purple;
     font-family: @secondaryFont;
 }
 
 .navLinks {
     display: flex;
-    gap: 32px; /* Увеличиваем расстояние между навигационными ссылками */
+    gap: 32px;
 }
 
 .navLink {
@@ -39,4 +50,22 @@
     &.active {
         color: @black;
     }
+}
+
+.addVacancy {
+    border-radius: 4px;
+    text-transform: none;
+    padding: 6px 16px;
+    background-color: @blue;
+
+    &:hover {
+        background-color: #0b5ed7; // TODO: уточнить у дизайнера
+    }
+}
+
+.userActions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }

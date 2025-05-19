@@ -1,34 +1,30 @@
 import React from 'react';
-import { IconButton as MuiIconButton, IconButtonProps as MuiIconButtonProps, styled } from '@mui/material';
+import { IconButtonProps, IconButton as MuiIconButton, styled } from '@mui/material';
 
-export interface IconButtonProps extends MuiIconButtonProps {
+interface IProps extends IconButtonProps {
     size?: 'small' | 'medium' | 'large';
 }
 
-const StyledIconButton = styled(MuiIconButton, {
-    shouldForwardProp: (prop) => prop !== 'size',
-})<IconButtonProps>(({ theme, size, color }) => ({
-    padding: size === 'small' ? 4 : size === 'large' ? 12 : 8,
-    color:
-        color === 'primary'
-            ? theme.palette.primary.main
-            : color === 'secondary'
-              ? theme.palette.secondary.main
-              : theme.palette.text.primary,
-
-    '&:hover': {
-        backgroundColor: theme.palette.action.hover,
-    },
-
-    '&.Mui-disabled': {
-        color: theme.palette.text.disabled,
-    },
+const StyledIconButton = styled(MuiIconButton)<IProps>(({ size }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '48px',
+    height: '48px',
+    ...(size === 'small' && {
+        width: '16px',
+        height: '16px',
+    }),
+    ...(size === 'medium' && {
+        width: '24px',
+        height: '24px',
+    }),
+    ...(size === 'large' && {
+        width: '32px',
+        height: '32px',
+    }),
 }));
 
-export const IconButton: React.FC<IconButtonProps> = ({ children, size = 'medium', ...props }) => {
-    return (
-        <StyledIconButton size={size} {...props}>
-            {children}
-        </StyledIconButton>
-    );
+export const IconButton: React.FC<React.PropsWithChildren<IProps>> = (props) => {
+    return <StyledIconButton {...props} />;
 };

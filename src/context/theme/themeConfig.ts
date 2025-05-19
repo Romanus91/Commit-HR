@@ -36,7 +36,7 @@ export const getThemeConfig = (mode: TMode): ThemeOptions => {
             MuiCssBaseline: {
                 styleOverrides: {
                     body: {
-                        backgroundColor: selectedPalette.background.default,
+                        backgroundColor: selectedPalette.body.main,
                         color: selectedPalette.text.primary,
                     },
                 },
