@@ -1,6 +1,11 @@
+import { EColor } from '@src/enums';
+
 export const palette = {
     light: {
         colors: {
+            custom: {
+                main: EColor.WHITE,
+            },
             primary: {
                 main: '#5271ff',
                 light: '#eaefff',
@@ -84,6 +89,9 @@ export const palette = {
     },
     dark: {
         colors: {
+            custom: {
+                main: EColor.WHITE,
+            },
             primary: {
                 main: '#5271ff',
                 light: '#4b5bab',

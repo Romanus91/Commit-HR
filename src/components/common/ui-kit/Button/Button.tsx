@@ -1,13 +1,15 @@
 import React from 'react';
 import { Button as MuiButton, ButtonProps as MuiButtonProps, styled } from '@mui/material';
+import { Link, LinkProps } from '@tanstack/react-router';
 
-export interface ButtonProps extends MuiButtonProps {
+export interface IProps extends MuiButtonProps {
     isFullWidth?: boolean;
+    to?: LinkProps['to'];
 }
 
 const StyledButton = styled(MuiButton, {
     shouldForwardProp: (prop) => prop !== 'isFullWidth',
-})<ButtonProps>(({ theme, variant, color, isFullWidth }) => ({
+})<IProps>(({ theme, variant, color, isFullWidth }) => ({
     padding: '8px 16px',
     fontWeight: 500,
     width: isFullWidth ? '100%' : 'auto',
@@ -64,9 +66,11 @@ const StyledButton = styled(MuiButton, {
     },
 }));
 
-export const Button: React.FC<ButtonProps> = ({ children, isFullWidth = false, ...props }) => {
+export const Button: React.FC<React.PropsWithChildren<IProps>> = ({ children, isFullWidth = false, to, ...props }) => {
+    const linkProps = to ? { component: Link, to } : {};
+
     return (
-        <StyledButton isFullWidth={isFullWidth} disableElevation {...props}>
+        <StyledButton isFullWidth={isFullWidth} disableElevation {...props} {...linkProps}>
             {children}
         </StyledButton>
     );

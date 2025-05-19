@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
 import cn from 'clsx';
-import { AppBar, Toolbar, Box, Button, IconButton } from '@mui/material';
 import styles from './styles.module.less';
 import { ROUTES } from '@router/routes';
-import { Icon, Illustration } from '@components/common/ui-kit';
-import { EColor, EIconName, EIconSize } from '@src/enums';
-import { EIllustrationName } from '@src/enums/illustration';
+import { AppBar, Box, Toolbar } from '@components/common/ui-kit';
+import { EColor } from '@src/enums';
+import { UserActions } from './components/UserActions';
 
 export const Header: React.FC = () => {
     const location = useLocation();
@@ -15,16 +14,15 @@ export const Header: React.FC = () => {
         return location.pathname === `/${path}`;
     };
 
-    const getNavLinkClass = (path: string) => {
+    const getNavLinkClass = (path: string): string => {
         return cn(styles.navLink, { [styles.active]: isLinkActive(path) });
     };
 
     return (
-        <AppBar position="static" sx={{ boxShadow: 'none' }}>
+        <AppBar position="static" className={styles.appBar} sx={{ backgroundColor: EColor.GRAY, boxShadow: 'none' }}>
             <Toolbar className={styles.toolbar}>
                 <Box component={Link} to="/" className={styles.logo}>
-                    <span className={styles.commitText}>Commit</span>
-                    <span className={styles.hrText}>HR</span>
+                    <span className={styles.commitText}>CommitHR</span>
                 </Box>
 
                 <nav className={styles.navLinks}>
@@ -41,35 +39,7 @@ export const Header: React.FC = () => {
                         Проекты
                     </Link>
                 </nav>
-
-                <Box sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <IconButton color="primary" aria-label="Избранное" title="Избранное" sx={{ color: '#0d6efd' }}>
-                        <Icon name={EIconName.STAR} color={EColor.BLUE} size={EIconSize.SMALL} />
-                    </IconButton>
-
-                    <Button
-                        component={Link}
-                        to={`/${ROUTES.ADD_VACANCY}`}
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                            borderRadius: '4px',
-                            textTransform: 'none',
-                            fontSize: '14px',
-                            padding: '6px 16px',
-                            backgroundColor: '#0d6efd',
-                            '&:hover': {
-                                backgroundColor: '#0b5ed7',
-                            },
-                        }}
-                    >
-                        Добавить вакансию
-                    </Button>
-
-                    <IconButton color="primary" aria-label="Профиль" title="Профиль" sx={{ color: '#0d6efd' }}>
-                        <Illustration name={EIllustrationName.PROFILE_MALE} />
-                    </IconButton>
-                </Box>
+                <UserActions />
             </Toolbar>
         </AppBar>
     );
