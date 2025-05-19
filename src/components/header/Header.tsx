@@ -3,9 +3,9 @@ import { Link, useLocation } from '@tanstack/react-router';
 import cn from 'clsx';
 import styles from './styles.module.less';
 import { ROUTES } from '@router/routes';
-import { AppBar, Box, Button, Icon, IconButton, Illustration, Toolbar } from '@components/common/ui-kit';
-import { EColor, EIconName, EIconSize } from '@src/enums';
-import { EIllustrationName } from '@src/enums/illustration';
+import { AppBar, Box, Toolbar } from '@components/common/ui-kit';
+import { EColor } from '@src/enums';
+import { UserActions } from './components/UserActions';
 
 export const Header: React.FC = () => {
     const location = useLocation();
@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
     };
 
     return (
-        <AppBar position="static" className={styles.appBar}>
+        <AppBar position="static" className={styles.appBar} sx={{ backgroundColor: EColor.GRAY, boxShadow: 'none' }}>
             <Toolbar className={styles.toolbar}>
                 <Box component={Link} to="/" className={styles.logo}>
                     <span className={styles.commitText}>CommitHR</span>
@@ -39,26 +39,7 @@ export const Header: React.FC = () => {
                         Проекты
                     </Link>
                 </nav>
-
-                <Box className={styles.userActions}>
-                    <IconButton color="primary" aria-label="Избранное" title="Избранное">
-                        <Icon name={EIconName.STAR} color={EColor.BLUE} size={EIconSize.SMALL} />
-                    </IconButton>
-
-                    <Button
-                        component={Link}
-                        to={`/${ROUTES.ADD_VACANCY}`}
-                        variant="contained"
-                        color="primary"
-                        className={styles.addVacancy}
-                    >
-                        Добавить вакансию
-                    </Button>
-
-                    <IconButton color="primary" aria-label="Профиль" title="Профиль">
-                        <Illustration name={EIllustrationName.PROFILE_MALE} />
-                    </IconButton>
-                </Box>
+                <UserActions />
             </Toolbar>
         </AppBar>
     );

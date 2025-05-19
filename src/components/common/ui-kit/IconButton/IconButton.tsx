@@ -9,8 +9,8 @@ const StyledIconButton = styled(MuiIconButton)<IProps>(({ size }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '48px',
-    height: '48px',
+    width: '40px',
+    height: '40px',
     ...(size === 'small' && {
         width: '16px',
         height: '16px',

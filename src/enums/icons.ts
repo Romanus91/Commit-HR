@@ -1,4 +1,6 @@
 export enum EIconName {
+    PLUS = 'Plus',
+    PROFILE = 'Profile',
     STAR = 'Star',
 }
 
