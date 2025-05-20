@@ -1,21 +1,17 @@
-// src/components/layout/AppLayout.tsx
-import { Box } from '@mui/material';
 import React from 'react';
 import styles from './styles.module.less';
 import { Header } from '../header';
+import { Outlet } from '@tanstack/react-router';
+import { Box } from '@components/common/ui-kit';
 
-interface AppLayoutProps {
-    children?: React.ReactNode;
-}
-
-export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+export const AppLayout: React.FC = () => {
     return (
         <Box className={styles.wrapper}>
             <Box className={styles.header}>
                 <Header />
             </Box>
             <Box className={styles.main} component="main">
-                {children}
+                <Outlet />
             </Box>
         </Box>
     );

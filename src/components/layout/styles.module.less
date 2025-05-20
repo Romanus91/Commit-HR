@@ -1,4 +1,3 @@
-// src/components/layout/styles.module.less
 .wrapper {
     display: grid;
     grid-template:
@@ -17,13 +16,5 @@
 
 .main {
     grid-area: main;
-    padding: 24px;
     min-height: calc(100vh - 64px);
-}
-
-/* Этот класс больше не нужен, но оставим для совместимости */
-.withoutSidebar {
-    grid-template:
-        'header header' auto
-        'main main' 1fr / 1fr;
 }
