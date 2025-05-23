@@ -33,6 +33,7 @@
             "@assets/*": ["assets/*"],
             "@router/*": ["router/*"],
             "@store/*": ["store/*"],
+            "@mocks/*": ["mocks/*"],
             "@src/*": ["./*"]
         }
     },

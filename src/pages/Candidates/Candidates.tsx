@@ -2,9 +2,10 @@ import React from 'react';
 import { useGetCandidatesQuery } from '@src/api/candidates';
 import { Box, Typography } from '@components/common/ui-kit';
 import { PageLayout } from '@components/layout/PageLayout';
+import { EDocumentType } from '@src/enums';
 
 export const CandidatesPage: React.FC = () => {
-    const { data } = useGetCandidatesQuery();
+    const { data } = useGetCandidatesQuery({ documentType: EDocumentType.RESUME });
 
     return (
         <PageLayout>

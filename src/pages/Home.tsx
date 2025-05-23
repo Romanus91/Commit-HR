@@ -1,13 +1,14 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { PageLayout } from '@components/layout/PageLayout';
+import { Box, Typography } from '@components/common/ui-kit';
 
 export const HomePage: React.FC = () => {
     return (
-        <Box sx={{ padding: 3 }}>
-            <Typography variant="h4" component="h1" gutterBottom>
-                Главная страница
-            </Typography>
-            <Typography variant="body1">Добро пожаловать в систему управления персоналом CommitHR!</Typography>
-        </Box>
+        <PageLayout>
+            <Box>
+                <Typography tag="h1">Главная страница</Typography>
+                <Typography tag="p">Добро пожаловать в систему управления персоналом CommitHR!</Typography>
+            </Box>
+        </PageLayout>
     );
 };
