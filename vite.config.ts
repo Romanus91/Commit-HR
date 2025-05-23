@@ -27,7 +27,29 @@ const config: UserConfig = defineConfig({
             '@assets': path.resolve(__dirname, 'src/assets'),
             '@router': path.resolve(__dirname, 'src/router'),
             '@store': path.resolve(__dirname, 'src/store'),
+            '@mocks': path.resolve(__dirname, 'src/mocks'),
             '@src': path.resolve(__dirname, 'src'),
+        },
+    },
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://147.45.245.28:31435',
+                changeOrigin: true,
+                secure: false,
+                rewrite: (path) => path.replace(/^\/api/, '/api/v1'),
+                configure: (proxy) => {
+                    proxy.on('error', (err) => {
+                        console.log('proxy error', err);
+                    });
+                    proxy.on('proxyReq', (_, req) => {
+                        console.log('Sending Request to the Target:', req.method, req.url);
+                    });
+                    proxy.on('proxyRes', (proxyRes, req) => {
+                        console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
+                    });
+                },
+            },
         },
     },
 });
