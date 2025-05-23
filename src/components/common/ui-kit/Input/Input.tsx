@@ -1,8 +1,11 @@
-import { styled, TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
+import { styled, TextField, TextFieldProps } from '@mui/material';
+import { InputAdornment } from './components/InputAdornment';
 
 export type InputProps = TextFieldProps & {
     variant?: 'filled' | 'outlined' | 'standard';
+    adornment?: React.ReactNode;
+    adornmentPosition?: 'start' | 'end';
 };
 
 export const StyledInput = styled(TextField)<InputProps>(({ theme, label, variant }) => ({
@@ -73,7 +76,6 @@ export const StyledInput = styled(TextField)<InputProps>(({ theme, label, varian
             },
         },
     }),
-
     '& .MuiFormHelperText-root': {
         padding: 0,
         margin: '4px 0px -20px 16px',
@@ -90,7 +92,12 @@ export const StyledInput = styled(TextField)<InputProps>(({ theme, label, varian
     },
 }));
 
-export const Input: React.FC<InputProps> = ({ variant = 'standard', ...props }) => {
+export const Input: React.FC<InputProps> = ({
+    variant = 'standard',
+    adornment,
+    adornmentPosition = 'start',
+    ...props
+}) => {
     return (
         <StyledInput
             {...props}
@@ -99,6 +106,11 @@ export const Input: React.FC<InputProps> = ({ variant = 'standard', ...props }) 
                 input: {
                     ...props.slotProps?.input,
                     disableUnderline: variant === 'filled' || variant === 'outlined',
+                    ...(adornment && {
+                        [`${adornmentPosition}Adornment`]: (
+                            <InputAdornment position={adornmentPosition}>{adornment}</InputAdornment>
+                        ),
+                    }),
                 },
             }}
             variant={variant}

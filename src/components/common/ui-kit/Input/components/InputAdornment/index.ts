@@ -1,0 +1,1 @@
+export { InputAdornment } from './InputAdornment';
