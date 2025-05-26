@@ -1,7 +1,7 @@
 import { createRouter, createRoute, createRootRoute } from '@tanstack/react-router';
 import { AppLayout } from '../components/layout';
 import { HomePage } from '../pages/Home';
-import { VacanciesPage } from '../pages/Vacancies/Vacancies';
+import { VacanciesPage } from '../pages/Vacancies';
 import { CandidatesPage } from '../pages/Candidates';
 import { ProjectsPage } from '../pages/Projects';
 import { ROUTES } from './routes';
