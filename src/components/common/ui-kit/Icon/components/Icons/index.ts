@@ -1,3 +1,4 @@
+export { Checkmark } from './Checkmark';
 export { Grid } from './Grid';
 export { List } from './List';
 export { Plus } from './Plus';
