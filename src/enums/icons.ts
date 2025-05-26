@@ -1,6 +1,9 @@
 export enum EIconName {
+    GRID = 'Grid',
+    LIST = 'List',
     PLUS = 'Plus',
     PROFILE = 'Profile',
+    SEARCH = 'Search',
     STAR = 'Star',
 }
 

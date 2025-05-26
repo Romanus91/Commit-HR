@@ -1,108 +1,120 @@
 import React from 'react';
-import {
-    TextField,
-    TextFieldProps,
-    styled,
-    FormHelperText,
-    InputAdornment,
-    FormControl,
-    InputLabel,
-} from '@mui/material';
+import { styled, TextField, TextFieldProps } from '@mui/material';
+import { InputAdornment } from './components/InputAdornment';
 
-export interface InputProps extends Omit<TextFieldProps, 'variant'> {
-    helperText?: React.ReactNode;
-    startAdornment?: React.ReactNode;
-    endAdornment?: React.ReactNode;
-    isFullWidth?: boolean;
-}
+export type InputProps = TextFieldProps & {
+    variant?: 'filled' | 'outlined' | 'standard';
+    adornment?: React.ReactNode;
+    adornmentPosition?: 'start' | 'end';
+};
 
-const StyledTextField = styled(TextField, {
-    shouldForwardProp: (prop) => prop !== 'isFullWidth',
-})<InputProps>(({ theme, error, disabled, isFullWidth }) => ({
-    width: isFullWidth ? '100%' : 'auto',
-
-    '& .MuiOutlinedInput-root': {
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[900],
-
-        '& fieldset': {
-            borderColor: error
-                ? theme.palette.error.main
-                : theme.palette.mode === 'light'
-                  ? theme.palette.grey[300]
-                  : theme.palette.grey[700],
-        },
-
-        '&:hover fieldset': {
-            borderColor: error
-                ? theme.palette.error.main
-                : theme.palette.mode === 'light'
-                  ? theme.palette.grey[400]
-                  : theme.palette.grey[600],
-        },
-
-        '&.Mui-focused fieldset': {
-            borderColor: error ? theme.palette.error.main : theme.palette.primary.main,
-        },
-
-        ...(disabled && {
-            backgroundColor: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[800],
-
-            '& fieldset': {
-                borderColor: theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+export const StyledInput = styled(TextField)<InputProps>(({ theme, label, variant }) => ({
+    ...(variant === 'filled' && {
+        '& .MuiFilledInput-root': {
+            height: '48px',
+            fontSize: '16px',
+            lineHeight: '24px',
+            fontWeight: 600,
+            padding: '0 12px',
+            border: '1px solid #F3F3F3',
+            borderRadius: theme.shape.borderRadius,
+            backgroundColor: '#F3F3F3',
+            '& .MuiFilledInput-input': {
+                padding: label ? '12px 0 7px' : '12px 0',
+                textOverflow: 'ellipsis',
+                '&::placeholder': {
+                    color: '#85818A',
+                    opacity: 1,
+                    fontWeight: 500,
+                },
             },
-
-            '& .MuiInputBase-input': {
-                color: theme.palette.text.disabled,
+            '&:hover': {
+                backgroundColor: theme.palette.common.white,
+                border: `1px solid #85818A`,
             },
-        }),
-    },
-
-    '& .MuiInputBase-input': {
-        padding: '10px 16px',
-        height: '22px',
-    },
-
-    '& .MuiInputLabel-root': {
-        color: theme.palette.text.secondary,
-
-        '&.Mui-focused': {
-            color: error ? theme.palette.error.main : theme.palette.primary.main,
+            '&.Mui-focused': {
+                backgroundColor: theme.palette.common.white,
+                border: `1px solid #85818A`,
+            },
         },
-
+        '& .MuiFormLabel-root': {
+            '&.MuiInputLabel-shrink': {
+                transform: 'translate(16px, 7px) scale(0.75)',
+            },
+        },
+    }),
+    ...(variant === 'outlined' && {
+        '& .MuiOutlinedInput-root': {
+            height: '48px',
+            fontSize: '16px',
+            lineHeight: '24px',
+            fontWeight: 600,
+            borderRadius: theme.shape.borderRadius,
+            backgroundColor: theme.palette.common.white,
+            '& .MuiOutlinedInput-input': {
+                padding: label ? '12px 0 7px' : '12px 0',
+                textOverflow: 'ellipsis',
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'black',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'black',
+            },
+        },
+    }),
+    ...(variant === 'standard' && {
+        '& .MuiInput-root': {
+            height: '48px',
+            fontSize: '16px',
+            lineHeight: '24px',
+            fontWeight: 600,
+            backgroundColor: theme.palette.common.white,
+            '& .MuiInput-input': {
+                padding: label ? '12px 0 7px' : '12px 0',
+                textOverflow: 'ellipsis',
+            },
+        },
+    }),
+    '& .MuiFormHelperText-root': {
+        padding: 0,
+        margin: '4px 0px -20px 16px',
         '&.Mui-error': {
             color: theme.palette.error.main,
+        },
+    },
+    input: {
+        '&:-webkit-autofill': {
+            height: '5px',
+            WebkitBoxShadow: `0 0 0 1000px ${theme.palette.common.white} inset`,
+            backgroundColor: theme.palette.common.white,
         },
     },
 }));
 
 export const Input: React.FC<InputProps> = ({
-    label,
-    helperText,
-    startAdornment,
-    endAdornment,
-    isFullWidth = false,
+    variant = 'standard',
+    adornment,
+    adornmentPosition = 'start',
     ...props
 }) => {
-    const inputId = React.useId();
-
     return (
-        <FormControl error={props.error} fullWidth={isFullWidth}>
-            {label && <InputLabel htmlFor={inputId}>{label}</InputLabel>}
-            <StyledTextField
-                id={inputId}
-                variant="outlined"
-                isFullWidth={isFullWidth}
-                label={label}
-                InputProps={{
-                    startAdornment: startAdornment && (
-                        <InputAdornment position="start">{startAdornment}</InputAdornment>
-                    ),
-                    endAdornment: endAdornment && <InputAdornment position="end">{endAdornment}</InputAdornment>,
-                }}
-                {...props}
-            />
-            {helperText && <FormHelperText>{helperText}</FormHelperText>}
-        </FormControl>
+        <StyledInput
+            {...props}
+            slotProps={{
+                ...props.slotProps,
+                input: {
+                    ...props.slotProps?.input,
+                    disableUnderline: variant === 'filled' || variant === 'outlined',
+                    ...(adornment && {
+                        [`${adornmentPosition}Adornment`]: (
+                            <InputAdornment position={adornmentPosition}>{adornment}</InputAdornment>
+                        ),
+                    }),
+                },
+            }}
+            variant={variant}
+            fullWidth
+        />
     );
 };
