@@ -1,4 +1,4 @@
-import { ECandidateGrade, EGeneralStatus } from '@src/enums/candidate';
+import { ECandidateGrade, EDocumentType, EGeneralStatus } from '@src/enums/candidate';
 import { IVacancy, IPagination } from '@src/types/api';
 
 export interface ICandidatesDTO {
@@ -10,13 +10,13 @@ export interface ICandidate {
     id: string;
     lastName: string;
     firstName: string;
-    patronymic: string;
-    grade: ECandidateGrade;
+    patronymic: string | null;
+    grade: ECandidateGrade | null;
     generalStatus: EGeneralStatus;
-    position: IDesiredPosition;
+    position: IDesiredPosition | null;
     city: ICityShort;
-    vacancies: IVacancy[];
-    files: IFile[];
+    vacancies: IVacancy[] | null;
+    files: IFile[] | null;
 }
 
 export interface IDesiredPosition {
@@ -25,7 +25,7 @@ export interface IDesiredPosition {
 }
 
 export interface ICityShort {
-    uuid: string;
+    uuid: string | null;
     name: string;
 }
 
@@ -33,4 +33,14 @@ export interface IFile {
     fileId: string;
     minioId: string;
     fileName: string;
+}
+
+export interface ICandidatesQueryParams {
+    status?: EGeneralStatus;
+    vacancyId?: string;
+    search?: string;
+    documentType: EDocumentType;
+    page?: number;
+    size?: number;
+    sort?: string[];
 }

@@ -69,10 +69,21 @@ export const StyledInput = styled(TextField)<InputProps>(({ theme, label, varian
             fontSize: '16px',
             lineHeight: '24px',
             fontWeight: 600,
+            padding: '0 12px',
             backgroundColor: theme.palette.common.white,
+            borderRadius: theme.shape.borderRadius,
             '& .MuiInput-input': {
                 padding: label ? '12px 0 7px' : '12px 0',
                 textOverflow: 'ellipsis',
+            },
+            '&::before': {
+                borderBottom: 'none',
+            },
+            '&::after': {
+                borderBottom: 'none',
+            },
+            '&:hover::before': {
+                borderBottom: 'none !important',
             },
         },
     }),
