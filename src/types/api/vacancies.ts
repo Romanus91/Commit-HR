@@ -1,4 +1,10 @@
 import { EVacancyStatus, EWorkFormat } from '@src/enums/vacancy';
+import { IPagination } from '@src/types/api';
+
+export interface IVacanciesDTO {
+    vacancies: IVacancy[];
+    pagination: IPagination;
+}
 
 export interface IVacancy {
     id: string;
