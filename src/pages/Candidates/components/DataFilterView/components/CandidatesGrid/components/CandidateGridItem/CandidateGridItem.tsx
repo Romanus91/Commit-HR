@@ -4,14 +4,27 @@ import styles from './styles.module.less';
 import { EColor, EIconName, EIconSize } from '@src/enums';
 import { ICandidate } from '@src/types/api';
 import { getFullName } from '@utils/getFullName';
+import { useRouter } from '@tanstack/react-router';
+import { ROUTES } from '@router/routes';
 
 interface IProps {
     item: ICandidate;
 }
 
 export const CandidateGridItem: React.FC<IProps> = ({ item }) => {
+    const router = useRouter();
+
+    const handleCardClick = (): void => {
+        const id = item.id;
+
+        router.navigate({
+            to: `/${ROUTES.CANDIDATES}/${id}`,
+            params: { id },
+        });
+    };
+
     return (
-        <Box className={styles.container}>
+        <Box className={styles.container} onClick={handleCardClick}>
             <Box className={styles.body}>
                 <Box className={styles.header}>
                     <Box className={styles.avatarWrapper}>

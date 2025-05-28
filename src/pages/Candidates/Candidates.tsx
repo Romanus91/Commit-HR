@@ -9,7 +9,7 @@ import { EViewType } from '@components/ViewToogle';
 import { DataFilterView } from './components/DataFilterView';
 
 export const CandidatesPage: React.FC = () => {
-    const { data } = useGetCandidatesQuery({ documentType: EDocumentType.RESUME });
+    const { data } = useGetCandidatesQuery({ documentType: EDocumentType.RESUME, page: 0, size: 20 });
     const [viewType, setViewType] = React.useState<EViewType>(EViewType.GRID);
     const [searchValue, setSearchValue] = React.useState('');
 

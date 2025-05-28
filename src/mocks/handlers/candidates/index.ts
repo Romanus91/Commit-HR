@@ -6,4 +6,7 @@ export const candidatesHandlers = [
     http.get(`${API_URL}/candidates`, () => {
         return HttpResponse.json(candidatesData, { status: 200 });
     }),
+    http.get(`${API_URL}/candidates/:id`, () => {
+        return HttpResponse.json(candidatesData, { status: 200 });
+    }),
 ];
