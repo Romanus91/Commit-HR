@@ -2,7 +2,7 @@ import { API_URL } from '@constants/environment';
 import { getKeycloakToken } from '@context/auth/KeycloakProvider';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = import.meta.env.VITE_DEV ? './api' : API_URL;
+const baseUrl = import.meta.env.VITE_DEV ? '/api' : API_URL;
 
 export const api = createApi({
     reducerPath: 'api',
@@ -21,6 +21,8 @@ export const api = createApi({
             } else {
                 headers.set('Authorization', 'Bearer mock-token-for-development');
             }
+
+            return headers;
         },
     }),
     endpoints: () => ({}),

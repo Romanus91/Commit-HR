@@ -5,11 +5,11 @@ import { PageLayout } from '@components/layout/PageLayout';
 import { EDocumentType } from '@src/enums';
 import styles from './styles.module.less';
 import { SearchToolbar } from './components/SearchToolbar';
-import { CandidatesList } from './components/CandidatesList';
 import { EViewType } from '@components/ViewToogle';
+import { DataFilterView } from './components/DataFilterView';
 
 export const CandidatesPage: React.FC = () => {
-    const { data } = useGetCandidatesQuery({ documentType: EDocumentType.RESUME });
+    const { data } = useGetCandidatesQuery({ documentType: EDocumentType.RESUME, page: 0, size: 20 });
     const [viewType, setViewType] = React.useState<EViewType>(EViewType.GRID);
     const [searchValue, setSearchValue] = React.useState('');
 
@@ -28,7 +28,7 @@ export const CandidatesPage: React.FC = () => {
                 selectedViewType={viewType}
                 searchValue={searchValue}
             />
-            <CandidatesList list={data?.candidates} />
+            <DataFilterView data={data} viewType={viewType} />
         </PageLayout>
     );
 };

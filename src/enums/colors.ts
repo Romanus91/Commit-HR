@@ -1,7 +1,10 @@
 export enum EColor {
     BLACK = '#17063C',
-    WHITE = '#ffffff',
-    GRAY = '#f0f0f0',
+    WHITE = '#FFFFFF',
+    GRAY = '#F0F0F0',
+    MID_GRAY = '#E1E1E1',
+    SILVER_GRAY = '#E3E3E3',
+    SOFT_GRAY = '#F3F3F3',
     DARK_GRAY = '#8496AB',
     BLUE = '#0697F7',
     PURPLE = '#7A62FF',

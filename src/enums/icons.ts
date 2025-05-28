@@ -1,5 +1,6 @@
 export enum EIconName {
     CHECKMARK = 'Checkmark',
+    CLIP = 'Clip',
     GRID = 'Grid',
     LIST = 'List',
     PLUS = 'Plus',

@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
     return (
         <AppBar position="static" className={styles.appBar} sx={{ backgroundColor: EColor.GRAY, boxShadow: 'none' }}>
             <Toolbar className={styles.toolbar}>
-                <Box component={Link} to="/" className={styles.logo}>
+                <Box component={Link} to={`/${ROUTES.HOME}`} className={styles.logo}>
                     <span className={styles.commitText}>CommitHR</span>
                 </Box>
 
