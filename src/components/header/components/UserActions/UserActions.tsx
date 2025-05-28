@@ -64,6 +64,7 @@ export const UserActions: React.FC = () => {
             )}
             <IconButton
                 aria-label="Добавить"
+                buttonSize="xlarge"
                 title="Добавить"
                 onClick={onClick}
                 sx={{
@@ -77,6 +78,7 @@ export const UserActions: React.FC = () => {
             </IconButton>
             <IconButton
                 aria-label="Профиль"
+                buttonSize="xlarge"
                 title="Профиль"
                 sx={{
                     backgroundColor: EColor.WHITE,

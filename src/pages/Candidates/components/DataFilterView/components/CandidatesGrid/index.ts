@@ -1,0 +1,1 @@
+export { CandidatesGrid } from './CandidatesGrid';

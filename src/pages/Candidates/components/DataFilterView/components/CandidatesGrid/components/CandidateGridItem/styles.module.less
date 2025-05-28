@@ -1,0 +1,79 @@
+@import url('src/styles/colors.less');
+@import url('src/styles/mixins.less');
+
+.text {
+    .truncate-text();
+
+    font-size: 16px;
+    line-height: 24px;
+    color: @black;
+}
+
+.container {
+    width: 282px;
+    height: 188px;
+    padding: 16px;
+    border-radius: 16px;
+    background-color: @softGray;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 16px rgb(0 0 0 / 30%);
+    }
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.avatarWrapper {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    width: 40px;
+    border-radius: 50%;
+    background-color: @white;
+}
+
+.name {
+    .line-clamp(2);
+
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    color: @black;
+}
+
+.position {
+    .text();
+
+    font-weight: 500;
+}
+
+.placeholder {
+    display: inline-block;
+    min-height: 1em;
+    width: 100%;
+}
+
+.grade {
+    .text();
+
+    font-weight: 400;
+    padding-bottom: 12px;
+}
+
+.footer {
+    padding-top: 12px;
+}

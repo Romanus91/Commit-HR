@@ -1,29 +1,36 @@
 import React from 'react';
 import { IconButtonProps, IconButton as MuiIconButton, styled } from '@mui/material';
 
+type ButtonSize = 'small' | 'medium' | 'large' | 'xlarge';
+
 interface IProps extends IconButtonProps {
     isSquare?: boolean;
-    size?: 'small' | 'medium' | 'large';
+    buttonSize?: ButtonSize;
 }
 
-const StyledIconButton = styled(MuiIconButton)<IProps>(({ size, isSquare }) => ({
+const StyledIconButton = styled(MuiIconButton, {
+    shouldForwardProp: (prop) => prop !== 'isSquare' && prop !== 'buttonSize',
+})<IProps>(({ buttonSize = 'medium', isSquare }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '40px',
-    height: '40px',
+    padding: 0,
     borderRadius: isSquare ? '0' : '50%',
-    ...(size === 'small' && {
+    ...(buttonSize === 'small' && {
         width: '16px',
         height: '16px',
     }),
-    ...(size === 'medium' && {
+    ...(buttonSize === 'medium' && {
         width: '24px',
         height: '24px',
     }),
-    ...(size === 'large' && {
+    ...(buttonSize === 'large' && {
         width: '32px',
         height: '32px',
+    }),
+    ...(buttonSize === 'xlarge' && {
+        width: '40px',
+        height: '40px',
     }),
 }));
 

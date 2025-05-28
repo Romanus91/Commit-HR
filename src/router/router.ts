@@ -1,4 +1,4 @@
-import { createRouter, createRoute, createRootRoute } from '@tanstack/react-router';
+import { createRouter, createRoute, createRootRoute, redirect } from '@tanstack/react-router';
 import { AppLayout } from '../components/layout';
 import { HomePage } from '../pages/Home';
 import { VacanciesPage } from '../pages/Vacancies';
@@ -8,6 +8,16 @@ import { ROUTES } from './routes';
 
 const rootRoute = createRootRoute({
     component: AppLayout,
+});
+
+const indexRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: '/',
+    beforeLoad: () => {
+        throw redirect({
+            to: `/${ROUTES.HOME}`,
+        });
+    },
 });
 
 const homeRoute = createRoute({
@@ -34,7 +44,7 @@ const projectsRoute = createRoute({
     component: ProjectsPage,
 });
 
-const routeTree = rootRoute.addChildren([homeRoute, vacanciesRoute, candidatesRoute, projectsRoute]);
+const routeTree = rootRoute.addChildren([indexRoute, homeRoute, vacanciesRoute, candidatesRoute, projectsRoute]);
 
 export const router = createRouter({
     routeTree,
