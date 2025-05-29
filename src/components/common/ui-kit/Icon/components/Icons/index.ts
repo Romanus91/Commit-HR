@@ -1,3 +1,4 @@
+export { CardProfile } from './CardProfile';
 export { Checkmark } from './Checkmark';
 export { Clip } from './Clip';
 export { Grid } from './Grid';

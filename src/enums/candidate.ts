@@ -29,7 +29,7 @@ export enum EDocumentType {
 export enum EEmploymentType {
     FULL_TIME = 'full_time',
     PART_TIME = 'part_time',
-    PROJECT_BASED = 'project-based',
+    PROJECT_BASED = 'project_based',
 }
 
 /**
@@ -44,4 +44,16 @@ export enum EEmploymentOption {
     IP = 'IP',
     GPH = 'GPH',
     SZ = 'SZ',
+}
+
+/**
+ * Роль рекрутера:
+ * RECRUITER - Рекрутер.
+ * EMPLOYER - Работодатель.
+ * ADMIN - Администратор.
+ */
+export enum ERecruiterRole {
+    RECRUITER = 'RECRUITER',
+    EMPLOYER = 'EMPLOYER',
+    ADMIN = 'ADMIN',
 }

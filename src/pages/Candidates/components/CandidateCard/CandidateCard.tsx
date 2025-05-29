@@ -1,34 +1,35 @@
 import React from 'react';
+import cn from 'clsx';
 import { Box, Icon, IconButton, Typography } from '@components/common/ui-kit';
 import styles from './styles.module.less';
 import { EColor, EIconName, EIconSize } from '@src/enums';
 import { ICandidate } from '@src/types/api';
 import { getFullName } from '@utils/getFullName';
-import { useRouter } from '@tanstack/react-router';
-import { ROUTES } from '@router/routes';
+import { ECandidateCardTheme } from './enums';
 
 interface IProps {
     item: ICandidate;
+    onClickCard: (id: string) => void;
+    theme: ECandidateCardTheme;
 }
 
-export const CandidateGridItem: React.FC<IProps> = ({ item }) => {
-    const router = useRouter();
+export const CandidateCard: React.FC<IProps> = ({ item, onClickCard, theme }) => {
+    const styledContainer = cn(styles.container, {
+        [styles.dark]: theme === ECandidateCardTheme.DARK,
+        [styles.light]: theme === ECandidateCardTheme.LIGHT,
+    });
 
-    const handleCardClick = (): void => {
-        const id = item.id;
-
-        router.navigate({
-            to: `/${ROUTES.CANDIDATES}/${id}`,
-            params: { id },
-        });
-    };
+    const styledAvatarWrapper = cn(styles.avatarWrapper, {
+        [styles.dark]: theme === ECandidateCardTheme.DARK,
+        [styles.light]: theme === ECandidateCardTheme.LIGHT,
+    });
 
     return (
-        <Box className={styles.container} onClick={handleCardClick}>
+        <Box className={styledContainer} onClick={() => onClickCard(item.id)}>
             <Box className={styles.body}>
                 <Box className={styles.header}>
-                    <Box className={styles.avatarWrapper}>
-                        <Icon color={EColor.BLACK} name={EIconName.PROFILE} size={EIconSize.SMALL} />
+                    <Box className={styledAvatarWrapper}>
+                        <Icon color={EColor.BLACK} name={EIconName.CARD_PROFILE} size={EIconSize.SMALL} />
                     </Box>
                     <Typography className={styles.name}>{getFullName(item)}</Typography>
                 </Box>

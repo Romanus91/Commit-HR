@@ -14,8 +14,15 @@
     height: 188px;
     padding: 16px;
     border-radius: 16px;
-    background-color: @softGray;
     cursor: pointer;
+
+    &.dark {
+        background-color: @softGray;
+    }
+
+    &.light {
+        background-color: @white;
+    }
 
     &:hover {
         box-shadow: 0 0 16px rgb(0 0 0 / 30%);
@@ -43,7 +50,14 @@
     aspect-ratio: 1/1;
     width: 40px;
     border-radius: 50%;
-    background-color: @white;
+
+    &.dark {
+        background-color: @white;
+    }
+
+    &.light {
+        background-color: @softGray;
+    }
 }
 
 .name {
