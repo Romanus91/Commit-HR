@@ -1,10 +1,18 @@
-import { ECandidateGrade, EEmploymentOption, EEmploymentType, EGeneralStatus } from '@src/enums';
+import {
+    ECandidateGrade,
+    EEmploymentOption,
+    EEmploymentType,
+    EGeneralStatus,
+    ERecruiterRole,
+    EWorkFormat,
+} from '@src/enums';
 
 export interface ICandidateDetailsDTO {
     id: string;
     lastName: string;
     firstName: string;
     patronymic: string | null;
+    /** Формат даты ISO-8601, например 2025-05-28. */
     birthDate: string;
     phoneNumber: string;
     email: string;
@@ -19,7 +27,7 @@ export interface ICandidateDetailsDTO {
     employmentType: EEmploymentType | null;
     /** Тип varchar(50), например 09:00-13:00. */
     workSchedule: string | null;
-    workFormat: string | null;
+    workFormat: EWorkFormat | null;
     employmentOption: EEmploymentOption | null;
     recruiter: ICandidateRecruiter;
     screeningResults: string | null;
@@ -29,9 +37,9 @@ export interface ICandidateDetailsDTO {
     startDate: string | null;
     generalStatus: EGeneralStatus;
     vacancies: ICandidateVacancy[];
-    /** Таймштамп вида "2023-10-01 10:00:00". */
+    /** Таймштамп формата ISO-8601 "2025-05-28T20:08:48.423Z". */
     createdAt: string;
-    /** Таймштамп вида "2023-10-01 10:00:00". */
+    /** Таймштамп формата ISO-8601 "2025-05-28T20:08:48.423Z". */
     updatedAt: string;
 }
 
@@ -53,7 +61,7 @@ export interface ICandidateRecruiter {
     email: string;
     phoneNumber: string;
     telegram: string;
-    role: string;
+    role: ERecruiterRole;
 }
 
 export interface ICandidateVacancy {

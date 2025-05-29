@@ -1,0 +1,1 @@
+export { CandidateMetadata } from './CandidateMetadata';

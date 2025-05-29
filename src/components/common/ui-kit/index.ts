@@ -1,5 +1,6 @@
 export { AppBar } from './AppBar';
 export { Box } from './Box';
+export { Breadcrumbs } from './Breadcrumbs';
 export { Button } from './Button';
 export { Checkbox } from './Checkbox';
 export { FormControlLabel } from './FormControlLabel';

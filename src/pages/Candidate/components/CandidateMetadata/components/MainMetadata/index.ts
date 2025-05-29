@@ -1,0 +1,1 @@
+export { MainMetadata } from './MainMetadata';

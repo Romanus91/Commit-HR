@@ -7,6 +7,7 @@ import { EViewType, ViewToogle } from '@components/ViewToogle';
 interface IProps {
     onChangeSearchValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onChangeViewType: (value: EViewType) => void;
+    onSearchSubmit: () => void;
     searchValue: string;
     selectedViewType: EViewType;
 }
@@ -14,9 +15,16 @@ interface IProps {
 export const SearchToolbar: React.FC<IProps> = ({
     onChangeSearchValue,
     onChangeViewType,
+    onSearchSubmit,
     searchValue,
     selectedViewType,
 }) => {
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (event.key === 'Enter') {
+            onSearchSubmit();
+        }
+    };
+
     return (
         <Box className={styles.container}>
             <Box>
@@ -25,13 +33,14 @@ export const SearchToolbar: React.FC<IProps> = ({
                         placeholder="Поиск"
                         variant="filled"
                         adornment={
-                            <IconButton type="submit">
+                            <IconButton type="button" onClick={onSearchSubmit}>
                                 <Icon name={EIconName.SEARCH} size={EIconSize.SMALL} color={EColor.DARK_GRAY} />
                             </IconButton>
                         }
                         adornmentPosition="end"
                         autoComplete="off"
                         onChange={onChangeSearchValue}
+                        onKeyDown={handleKeyDown}
                         value={searchValue}
                     />
                 </Box>

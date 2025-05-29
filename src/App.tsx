@@ -5,19 +5,19 @@ import { RouterProvider } from '@tanstack/react-router';
 import { router } from './router';
 import { ThemeContextProvider } from './context/theme';
 import { store } from '@store/store';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
 
-// import { KeycloakProvider } from '@context/auth/KeycloakProvider';
+dayjs.locale('ru');
 
 export const App: React.FC = () => {
     return (
         <StrictMode>
-            {/* <KeycloakProvider> */}
             <Provider store={store}>
                 <ThemeContextProvider>
                     <RouterProvider router={router} />
                 </ThemeContextProvider>
             </Provider>
-            {/* </KeycloakProvider> */}
         </StrictMode>
     );
 };

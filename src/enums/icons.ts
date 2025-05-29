@@ -1,4 +1,5 @@
 export enum EIconName {
+    CARD_PROFILE = 'CardProfile',
     CHECKMARK = 'Checkmark',
     CLIP = 'Clip',
     GRID = 'Grid',

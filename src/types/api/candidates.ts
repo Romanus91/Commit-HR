@@ -1,4 +1,4 @@
-import { ECandidateGrade, EDocumentType, EGeneralStatus } from '@src/enums/candidate';
+import { EPaginationSize, ECandidateGrade, EDocumentType, EGeneralStatus } from '@src/enums';
 import { IVacancy, IPagination } from '@src/types/api';
 
 export interface ICandidatesDTO {
@@ -41,6 +41,6 @@ export interface ICandidatesQueryParams {
     search?: string;
     documentType: EDocumentType;
     page?: number;
-    size?: number;
+    size?: EPaginationSize;
     sort?: string[];
 }
