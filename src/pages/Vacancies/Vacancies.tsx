@@ -1,4 +1,3 @@
-// src/pages/Vacancies/Vacancies.tsx
 import React from 'react';
 import { Box, Typography } from '@components/common/ui-kit';
 import { useGetVacanciesQuery } from '@src/api/vacancies';
