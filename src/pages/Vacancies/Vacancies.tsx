@@ -1,14 +1,41 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography } from '@components/common/ui-kit';
 import { useGetVacanciesQuery } from '@src/api/vacancies';
 import { PageLayout } from '@components/layout/PageLayout';
+import { SearchToolbar } from './components/SearchToolbar';
+import { EViewType } from '@components/ViewToogle';
+import styles from './styles.module.less';
 
 export const VacanciesPage: React.FC = () => {
+    const [searchValue, setSearchValue] = React.useState('');
+    const [searchQuery, setSearchQuery] = React.useState('');
+    const [viewType, setViewType] = React.useState<EViewType>(EViewType.GRID);
+
     const { data, isLoading, error } = useGetVacanciesQuery();
+
+    // Фильтрация вакансий по поисковому запросу
+    const filteredVacancies = React.useMemo(() => {
+        if (!data?.vacancies || !searchQuery) {
+            return data?.vacancies || [];
+        }
+
+        return data.vacancies.filter((vacancy) => vacancy.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    }, [data?.vacancies, searchQuery]);
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setSearchValue(event.target.value);
+    };
+
+    const handleSearchSubmit = (): void => {
+        setSearchQuery(searchValue);
+    };
 
     if (isLoading) {
         return (
             <PageLayout>
+                <Typography tag="h1" className={styles.title}>
+                    Вакансии
+                </Typography>
                 <Typography>Загрузка вакансий...</Typography>
             </PageLayout>
         );
@@ -17,56 +44,69 @@ export const VacanciesPage: React.FC = () => {
     if (error) {
         return (
             <PageLayout>
-                <Typography color="error">Ошибка загрузки вакансий</Typography>
+                <Typography tag="h1" className={styles.title}>
+                    Вакансии
+                </Typography>
+                <Typography>Ошибка загрузки вакансий</Typography>
             </PageLayout>
         );
     }
 
     return (
         <PageLayout>
-            <Box sx={{ padding: 3 }}>
-                <Typography variant="h4" component="h1" gutterBottom>
-                    Вакансии ({data?.vacancies.length || 0})
-                </Typography>
+            <Typography tag="h1" className={styles.title}>
+                Вакансии
+            </Typography>
+            <SearchToolbar
+                onChangeViewType={(newValue) => setViewType(newValue)}
+                onChangeSearchValue={handleSearchChange}
+                onSearchSubmit={handleSearchSubmit}
+                selectedViewType={viewType}
+                searchValue={searchValue}
+            />
 
-                {data?.vacancies.map((vacancy) => (
-                    <Box
-                        key={vacancy.id}
-                        sx={{
-                            border: '1px solid #e0e0e0',
-                            borderRadius: 2,
-                            padding: 2,
-                            marginBottom: 2,
-                            backgroundColor: 'white',
-                        }}
-                    >
-                        <Typography variant="h6" gutterBottom>
-                            {vacancy.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Формат работы: {vacancy.workFormat}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Максимальные позиции: {vacancy.maxPositions}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Статус: {vacancy.status}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Кандидатов: {vacancy.candidatesCount}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Дедлайн: {new Date(vacancy.deadline).toLocaleDateString('ru-RU')}
-                        </Typography>
+            {/* Временное отображение данных в зависимости от выбранного вида */}
+            <Box className={styles.content}>
+                {viewType === EViewType.GRID ? (
+                    <Box className={styles.gridView}>
+                        {filteredVacancies.map((vacancy) => (
+                            <Box key={vacancy.id} className={styles.vacancyCard}>
+                                <Typography className={styles.vacancyTitle}>{vacancy.title}</Typography>
+                                <Typography className={styles.vacancyInfo}>Формат: {vacancy.workFormat}</Typography>
+                                <Typography className={styles.vacancyInfo}>Позиций: {vacancy.maxPositions}</Typography>
+                                <Typography className={styles.vacancyInfo}>
+                                    Кандидатов: {vacancy.candidatesCount}
+                                </Typography>
+                                <Typography className={styles.vacancyInfo}>Статус: {vacancy.status}</Typography>
+                            </Box>
+                        ))}
                     </Box>
-                ))}
+                ) : (
+                    <Box className={styles.listView}>
+                        {filteredVacancies.map((vacancy) => (
+                            <Box key={vacancy.id} className={styles.vacancyRow}>
+                                <Typography className={styles.vacancyTitle}>{vacancy.title}</Typography>
+                                <Typography className={styles.vacancyInfo}>
+                                    {vacancy.workFormat} | {vacancy.maxPositions} позиций | {vacancy.candidatesCount}{' '}
+                                    кандидатов | {vacancy.status}
+                                </Typography>
+                            </Box>
+                        ))}
+                    </Box>
+                )}
 
-                {data?.pagination && (
-                    <Typography variant="caption" color="text.secondary">
-                        Страница {data.pagination.page} из {data.pagination.totalPages}
+                {filteredVacancies.length === 0 && (
+                    <Typography className={styles.emptyState}>
+                        {searchQuery ? 'Вакансии не найдены' : 'Нет доступных вакансий'}
                     </Typography>
                 )}
             </Box>
+
+            {data?.pagination && (
+                <Typography className={styles.pagination}>
+                    Страница {data.pagination.page} из {data.pagination.totalPages}
+                </Typography>
+            )}
         </PageLayout>
     );
 };

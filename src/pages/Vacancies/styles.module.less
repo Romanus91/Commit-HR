@@ -1,0 +1,84 @@
+@import url('src/styles/colors.less');
+
+.title {
+    margin-top: 36px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    color: @black;
+}
+
+.content {
+    margin-top: 24px;
+}
+
+.gridView {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.vacancyCard {
+    padding: 16px;
+    background-color: @softGray;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+    }
+}
+
+.listView {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vacancyRow {
+    padding: 16px;
+    background-color: @white;
+    border: 1px solid grey;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: @gray;
+    }
+}
+
+.vacancyTitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: @black;
+    margin-bottom: 8px;
+}
+
+.vacancyInfo {
+    font-size: 14px;
+    line-height: 20px;
+    color: @darkGray;
+    margin-bottom: 4px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.emptyState {
+    text-align: center;
+    color: @darkGray;
+    font-size: 16px;
+    padding: 40px 0;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 24px;
+    color: @darkGray;
+    font-size: 14px;
+}
