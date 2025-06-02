@@ -16,5 +16,5 @@ export interface IVacancy {
     status: EVacancyStatus;
     createdAt: string;
     updatedAt: string;
-    candidatesCount: number;
+    candidatesCount: number | null;
 }
