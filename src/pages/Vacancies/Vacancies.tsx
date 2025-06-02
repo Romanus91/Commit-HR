@@ -1,9 +1,11 @@
+// src/pages/Vacancies/Vacancies.tsx
 import React from 'react';
 import { Box, Typography } from '@components/common/ui-kit';
 import { useGetVacanciesQuery } from '@src/api/vacancies';
 import { PageLayout } from '@components/layout/PageLayout';
 import { SearchToolbar } from './components/SearchToolbar';
 import { EViewType } from '@components/ViewToogle';
+import { workFormatMap, vacancyStatusMap } from './constans/mapping';
 import styles from './styles.module.less';
 
 export const VacanciesPage: React.FC = () => {
@@ -72,12 +74,16 @@ export const VacanciesPage: React.FC = () => {
                         {filteredVacancies.map((vacancy) => (
                             <Box key={vacancy.id} className={styles.vacancyCard}>
                                 <Typography className={styles.vacancyTitle}>{vacancy.title}</Typography>
-                                <Typography className={styles.vacancyInfo}>Формат: {vacancy.workFormat}</Typography>
+                                <Typography className={styles.vacancyInfo}>
+                                    Формат: {workFormatMap[vacancy.workFormat]}
+                                </Typography>
                                 <Typography className={styles.vacancyInfo}>Позиций: {vacancy.maxPositions}</Typography>
                                 <Typography className={styles.vacancyInfo}>
-                                    Кандидатов: {vacancy.candidatesCount}
+                                    Кандидатов: {vacancy.candidatesCount ?? 0}
                                 </Typography>
-                                <Typography className={styles.vacancyInfo}>Статус: {vacancy.status}</Typography>
+                                <Typography className={styles.vacancyInfo}>
+                                    Статус: {vacancyStatusMap[vacancy.status]}
+                                </Typography>
                             </Box>
                         ))}
                     </Box>
@@ -87,8 +93,8 @@ export const VacanciesPage: React.FC = () => {
                             <Box key={vacancy.id} className={styles.vacancyRow}>
                                 <Typography className={styles.vacancyTitle}>{vacancy.title}</Typography>
                                 <Typography className={styles.vacancyInfo}>
-                                    {vacancy.workFormat} | {vacancy.maxPositions} позиций | {vacancy.candidatesCount}{' '}
-                                    кандидатов | {vacancy.status}
+                                    {workFormatMap[vacancy.workFormat]} | {vacancy.maxPositions} позиций |{' '}
+                                    {vacancy.candidatesCount ?? 0} кандидатов | {vacancyStatusMap[vacancy.status]}
                                 </Typography>
                             </Box>
                         ))}
