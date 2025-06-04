@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from '@tanstack/react-router';
 import { PageLayout } from '@components/layout/PageLayout';
-import { useGetCandidateQuery } from '@src/api/candidates';
+import { useGetCandidateCommentsQuery, useGetCandidateQuery } from '@src/api/candidates';
 import { candidateDetailsRoute } from '@router/index';
 import { Box } from '@components/common/ui-kit';
 import styles from './styles.module.less';
@@ -9,9 +9,10 @@ import { CandidateBreadcrumbs, CandidateMetadata, CandidateOverview } from './co
 
 export const CandidatePage: React.FC = () => {
     const { id } = useParams({ from: candidateDetailsRoute.id });
-    const { data } = useGetCandidateQuery(id);
+    const { data: candidateData } = useGetCandidateQuery(id);
+    const { data: commentsData } = useGetCandidateCommentsQuery(id);
 
-    if (!data) {
+    if (!candidateData) {
         return null;
     }
 
@@ -21,8 +22,8 @@ export const CandidatePage: React.FC = () => {
                 <CandidateBreadcrumbs />
             </Box>
             <Box className={styles.info}>
-                <CandidateOverview />
-                <CandidateMetadata data={data} />
+                <CandidateOverview candidateId={id} commentsData={commentsData} />
+                <CandidateMetadata data={candidateData} />
             </Box>
         </PageLayout>
     );

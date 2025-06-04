@@ -1,5 +1,5 @@
-// src/api/vacancies.ts
-import { IVacanciesDTO } from '@src/types';
+import { IVacanciesDTO, IVacancyDetailDTO } from '@src/types';
+// import { IVacancyDetailDTO } from '@src/types/api/vacancy';
 import { api } from './api';
 
 const baseUrl = '/vacancies';
@@ -11,7 +11,12 @@ export const vacanciesApi = api.injectEndpoints({
                 url: baseUrl,
             }),
         }),
+        getVacancy: builder.query<IVacancyDetailDTO, string>({
+            query: (id: string) => ({
+                url: `${baseUrl}/${id}`,
+            }),
+        }),
     }),
 });
 
-export const { useGetVacanciesQuery } = vacanciesApi;
+export const { useGetVacanciesQuery, useGetVacancyQuery } = vacanciesApi;

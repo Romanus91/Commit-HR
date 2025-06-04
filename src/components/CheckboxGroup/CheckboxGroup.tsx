@@ -1,4 +1,4 @@
-import { IFilterFormValues } from '@pages/Candidates/components/DataFilterView/components/FilterPanel/types';
+import { IFilterFormValues } from '@pages/Candidates/types';
 import { Control, Controller } from 'react-hook-form';
 import styles from './styles.module.less';
 import { Box, Checkbox, FormControlLabel, Typography } from '@components/common/ui-kit';

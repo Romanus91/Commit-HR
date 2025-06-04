@@ -1,4 +1,4 @@
-import { ICandidateDetailsDTO, ICandidatesDTO, ICandidatesQueryParams } from '@src/types';
+import { ICandidateDetailsDTO, ICandidatesDTO, ICandidatesQueryParams, ICommentDTO } from '@src/types';
 import { api } from './api';
 
 const baseUrl = '/candidates';
@@ -10,6 +10,18 @@ export const candidatesApi = api.injectEndpoints({
                 url: `${baseUrl}/${id}`,
             }),
         }),
+        getCandidateComments: builder.query<ICommentDTO[], string>({
+            query: (id: string) => ({
+                url: `${baseUrl}/${id}/comments`,
+            }),
+        }),
+        createCandidateComment: builder.mutation<ICommentDTO, { candidateId: string; comment: string }>({
+            query: ({ candidateId, comment }) => ({
+                url: `${baseUrl}/${candidateId}/comments`,
+                method: 'POST',
+                body: { comment },
+            }),
+        }),
         getCandidates: builder.query<ICandidatesDTO, ICandidatesQueryParams>({
             query: (params) => ({
                 url: `${baseUrl}`,
@@ -19,4 +31,10 @@ export const candidatesApi = api.injectEndpoints({
     }),
 });
 
-export const { useGetCandidateQuery, useGetCandidatesQuery, useLazyGetCandidatesQuery } = candidatesApi;
+export const {
+    useGetCandidateQuery,
+    useGetCandidateCommentsQuery,
+    useCreateCandidateCommentMutation,
+    useGetCandidatesQuery,
+    useLazyGetCandidatesQuery,
+} = candidatesApi;

@@ -3,14 +3,18 @@ import { Box, Typography } from '@components/common/ui-kit';
 import { useGetVacanciesQuery } from '@src/api/vacancies';
 import { PageLayout } from '@components/layout/PageLayout';
 import { SearchToolbar } from './components/SearchToolbar';
+import { VacancyCard } from './components/VacancyCard';
+import { VacanciesList } from './components/VacanciesList';
 import { EViewType } from '@components/ViewToogle';
-import { workFormatMap, vacancyStatusMap } from './constans/mapping';
 import styles from './styles.module.less';
+import { useRouter } from '@tanstack/react-router';
+import { ROUTES } from '@router/routes';
 
 export const VacanciesPage: React.FC = () => {
     const [searchValue, setSearchValue] = React.useState('');
     const [searchQuery, setSearchQuery] = React.useState('');
     const [viewType, setViewType] = React.useState<EViewType>(EViewType.GRID);
+    const router = useRouter();
 
     const { data, isLoading, error } = useGetVacanciesQuery();
 
@@ -29,6 +33,13 @@ export const VacanciesPage: React.FC = () => {
 
     const handleSearchSubmit = (): void => {
         setSearchQuery(searchValue);
+    };
+
+    const handleVacancyClick = (id: string): void => {
+        router.navigate({
+            to: `/${ROUTES.VACANCIES}/${id}`,
+            params: { id },
+        });
     };
 
     if (isLoading) {
@@ -71,33 +82,11 @@ export const VacanciesPage: React.FC = () => {
                 {viewType === EViewType.GRID ? (
                     <Box className={styles.gridView}>
                         {filteredVacancies.map((vacancy) => (
-                            <Box key={vacancy.id} className={styles.vacancyCard}>
-                                <Typography className={styles.vacancyTitle}>{vacancy.title}</Typography>
-                                <Typography className={styles.vacancyInfo}>
-                                    Формат: {workFormatMap[vacancy.workFormat]}
-                                </Typography>
-                                <Typography className={styles.vacancyInfo}>Позиций: {vacancy.maxPositions}</Typography>
-                                <Typography className={styles.vacancyInfo}>
-                                    Кандидатов: {vacancy.candidatesCount ?? 0}
-                                </Typography>
-                                <Typography className={styles.vacancyInfo}>
-                                    Статус: {vacancyStatusMap[vacancy.status]}
-                                </Typography>
-                            </Box>
+                            <VacancyCard key={vacancy.id} item={vacancy} onClickCard={handleVacancyClick} />
                         ))}
                     </Box>
                 ) : (
-                    <Box className={styles.listView}>
-                        {filteredVacancies.map((vacancy) => (
-                            <Box key={vacancy.id} className={styles.vacancyRow}>
-                                <Typography className={styles.vacancyTitle}>{vacancy.title}</Typography>
-                                <Typography className={styles.vacancyInfo}>
-                                    {workFormatMap[vacancy.workFormat]} | {vacancy.maxPositions} позиций |{' '}
-                                    {vacancy.candidatesCount ?? 0} кандидатов | {vacancyStatusMap[vacancy.status]}
-                                </Typography>
-                            </Box>
-                        ))}
-                    </Box>
+                    <VacanciesList vacancies={filteredVacancies} onVacancyClick={handleVacancyClick} />
                 )}
 
                 {filteredVacancies.length === 0 && (

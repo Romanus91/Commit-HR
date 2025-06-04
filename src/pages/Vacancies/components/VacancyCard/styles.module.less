@@ -1,0 +1,77 @@
+@import url('src/styles/colors.less');
+@import url('src/styles/mixins.less');
+
+.container {
+    width: 282px;
+    min-height: 160px;
+    padding: 16px;
+    background-color: @white;
+    border: 1px solid gray;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+        transform: translateY(-2px);
+        border-color: @purple;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.title {
+    .line-clamp(2);
+
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: @black;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 2px 12px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+
+    &.open {
+        background-color: rgb(6 151 247 / 10%);
+        color: @blue;
+    }
+
+    &.closed {
+        background-color: rgb(132 150 171 / 10%);
+        color: @darkGray;
+    }
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.infoRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.infoText {
+    .truncate-text();
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: @twilightGray;
+}

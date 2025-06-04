@@ -9,5 +9,7 @@ export enum EColor {
     TWILIGHT_GRAY = '#515A64',
     BLUE = '#0697F7',
     PURPLE = '#7A62FF',
+    LIGHT_LAVENDER = '#EDEAFF',
+    MEDIUM_LAVENDER = '#947CB3',
     LIGHT_GREEN = '#B1EF9A',
 }

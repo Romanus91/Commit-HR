@@ -1,0 +1,43 @@
+export default [
+    {
+        id: '12345',
+        candidateId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        vacancyId: '123',
+        userId: '1234',
+        authorName: 'Василиса Прекрасная',
+        comment: 'Короткий комментарий',
+        createdAt: '2025-06-03T11:15:27.157Z',
+        updatedAt: '2025-06-03T11:15:27.157Z',
+    },
+    {
+        id: '1234567',
+        candidateId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+        vacancyId: '1235',
+        userId: '1234',
+        authorName: 'Василиса Прекрасная',
+        comment: 'Здесь коментарий уже подлиньше, чем имя пользователя, оставивший комментарий',
+        createdAt: '2025-06-03T11:15:27.157Z',
+        updatedAt: '2025-06-03T11:15:27.157Z',
+    },
+    {
+        id: '12345678',
+        candidateId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+        vacancyId: '12355',
+        userId: '1234',
+        authorName: 'Василиса Прекрасная',
+        comment:
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
+        createdAt: '2025-06-03T11:15:27.157Z',
+        updatedAt: '2025-06-03T11:15:27.157Z',
+    },
+    {
+        id: '12345678',
+        candidateId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+        vacancyId: '1235',
+        userId: '1234',
+        authorName: 'А',
+        comment: ':)',
+        createdAt: '2025-06-03T11:15:27.157Z',
+        updatedAt: '2025-06-03T11:15:27.157Z',
+    },
+];

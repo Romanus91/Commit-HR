@@ -7,11 +7,13 @@ import styles from './styles.module.less';
 import { SearchToolbar } from './components/SearchToolbar';
 import { EViewType } from '@components/ViewToogle';
 import { DataFilterView } from './components/DataFilterView';
+import { FormProvider, useForm } from 'react-hook-form';
+import { IFilterFormValues } from './types';
 
 export const CandidatesPage: React.FC = () => {
     const [searchValue, setSearchValue] = React.useState('');
     const [searchQuery, setSearchQuery] = React.useState('');
-    const { data } = useGetCandidatesQuery({
+    const { data, isError, error } = useGetCandidatesQuery({
         documentType: EDocumentType.RESUME,
         page: 0,
         size: EPaginationSize.SIZE_20,
@@ -19,12 +21,24 @@ export const CandidatesPage: React.FC = () => {
     });
     const [viewType, setViewType] = React.useState<EViewType>(EViewType.GRID);
 
+    const methods = useForm<IFilterFormValues>({
+        defaultValues: {
+            grade: null,
+            workFormat: null,
+        },
+    });
+    const { reset } = methods;
+
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchValue(event.target.value);
     };
 
     const handleSearchSubmit = (): void => {
         setSearchQuery(searchValue);
+
+        if (searchValue) {
+            reset();
+        }
     };
 
     return (
@@ -39,7 +53,9 @@ export const CandidatesPage: React.FC = () => {
                 selectedViewType={viewType}
                 searchValue={searchValue}
             />
-            <DataFilterView data={data} viewType={viewType} />
+            <FormProvider {...methods}>
+                <DataFilterView data={data} error={error} isError={isError} viewType={viewType} />
+            </FormProvider>
         </PageLayout>
     );
 };

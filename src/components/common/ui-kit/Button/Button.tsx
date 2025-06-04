@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button as MuiButton, ButtonProps as MuiButtonProps, styled } from '@mui/material';
 import { Link, LinkProps } from '@tanstack/react-router';
+import { EColor } from '@src/enums';
 
 export interface IProps extends MuiButtonProps {
     isFullWidth?: boolean;
@@ -18,7 +19,11 @@ const StyledButton = styled(MuiButton, {
     boxShadow: variant === 'contained' ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none',
 
     '&.MuiButton-containedPrimary': {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: EColor.PURPLE,
+        color: EColor.WHITE,
+        borderRadius: '12px',
+        fontSize: '16px',
+        fontWeight: 600,
         '&:hover': {
             backgroundColor: theme.palette.primary.dark,
         },

@@ -6,6 +6,7 @@ import { CandidatesPage } from '../pages/Candidates';
 import { ProjectsPage } from '../pages/Projects';
 import { ROUTES } from './routes';
 import { CandidatePage } from '@pages/Candidate';
+import { VacancyPage } from '@pages/Vacancy/VacancyPage';
 
 const rootRoute = createRootRoute({
     component: AppLayout,
@@ -33,6 +34,12 @@ const vacanciesRoute = createRoute({
     component: VacanciesPage,
 });
 
+const vacancyDetailsRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: `/${ROUTES.VACANCIES}/$id`,
+    component: VacancyPage,
+});
+
 const candidatesRoute = createRoute({
     getParentRoute: () => rootRoute,
     path: `/${ROUTES.CANDIDATES}`,
@@ -56,6 +63,7 @@ const routeTree = rootRoute.addChildren([
     homeRoute,
     vacanciesRoute,
     candidatesRoute,
+    vacancyDetailsRoute,
     candidateDetailsRoute,
     projectsRoute,
 ]);
@@ -64,4 +72,4 @@ const router = createRouter({
     routeTree,
 });
 
-export { router, candidateDetailsRoute };
+export { router, candidateDetailsRoute, vacancyDetailsRoute };

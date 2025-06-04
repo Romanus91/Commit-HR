@@ -1,4 +1,3 @@
-// src/mocks/handlers/vacancies/responses/vacanciesData.ts
 import { EVacancyStatus, EWorkFormat } from '@src/enums';
 
 export default {

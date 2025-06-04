@@ -107,10 +107,12 @@ export const Input: React.FC<InputProps> = ({
     variant = 'standard',
     adornment,
     adornmentPosition = 'start',
+    autoComplete = 'off',
     ...props
 }) => {
     return (
         <StyledInput
+            autoComplete={autoComplete}
             {...props}
             slotProps={{
                 ...props.slotProps,

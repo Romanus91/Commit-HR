@@ -1,5 +1,5 @@
 import { ECandidateGrade, EWorkFormat } from '@src/enums';
-import { IFilterFormValues } from './types';
+import { IFilterFormValues } from '../../../../types';
 
 export const CANDIDATE_GROUP_FILTERS = [
     {
