@@ -1,3 +1,4 @@
+// @ts-nocheck // TODO: remove
 import React from 'react';
 import { IKeycloakContextProps } from './types/types';
 

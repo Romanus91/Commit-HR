@@ -27,14 +27,14 @@ export enum EDocumentType {
  * PROJECT_BASED - Проектная занятость.
  */
 export enum EEmploymentType {
-    FULL_TIME = 'full_time',
-    PART_TIME = 'part_time',
-    PROJECT_BASED = 'project_based',
+    FULL_TIME = 'FULL_TIME',
+    PART_TIME = 'PART_TIME',
+    PROJECT_BASED = 'PROJECT_BASED',
 }
 
 /**
  * Тип оформления:
- * TK - Трудов.
+ * TK - Трудовая книжка.
  * IP - Индивидуальный предприниматель.
  * GPH - Договор гражданско-правового характера.
  * SZ - Самозанятый.

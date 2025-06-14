@@ -1,0 +1,1 @@
+export { CandidateIdentity } from './CandidateIdentity';

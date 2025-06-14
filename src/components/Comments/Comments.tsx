@@ -16,16 +16,19 @@ interface IProps {
 }
 
 /** Компонент для отображения комментариев и полем ввода для добавления коментария. */
-export const Comments: React.FC<IProps> = ({ candidateId, commentsData, endpoint }) => {
+const Comments: React.FC<IProps> = ({ candidateId, commentsData, endpoint }) => {
     const { register, handleSubmit, watch, reset } = useForm<IFormInput>({
         mode: 'onChange',
     });
     const [postCandidateComment] = useCreateCandidateCommentMutation();
+    const [localComments, setLocalComments] = React.useState<ICommentDTO[]>(commentsData ?? []);
 
     const onSubmit: SubmitHandler<IFormInput> = async (data: { comment: string }) => {
         try {
             if (endpoint === ECommentApiEndpoint.CANDIDATE) {
-                await postCandidateComment({ candidateId, comment: data.comment }).unwrap();
+                const response = await postCandidateComment({ candidateId, comment: data.comment }).unwrap();
+
+                setLocalComments((prev) => [response, ...prev]);
                 reset();
             } else if (endpoint === ECommentApiEndpoint.VACANCY) {
                 reset(); // TODO: Добавить запрос для оставления комментария к вакансии
@@ -34,6 +37,10 @@ export const Comments: React.FC<IProps> = ({ candidateId, commentsData, endpoint
             console.error('Comments', error);
         }
     };
+
+    React.useEffect(() => {
+        setLocalComments(commentsData ?? []);
+    }, [commentsData]);
 
     return (
         <Box className={styles.container}>
@@ -50,7 +57,9 @@ export const Comments: React.FC<IProps> = ({ candidateId, commentsData, endpoint
                     Добавить
                 </Button>
             </form>
-            <CommentsList commentsData={commentsData} />
+            <CommentsList commentsData={localComments} />
         </Box>
     );
 };
+
+export default Comments;

@@ -29,7 +29,7 @@ export default {
     grade: ECandidateGrade.JUNIOR,
     expectedSalary: 10000,
     currencyCode: 'рублей',
-    employmentType: EEmploymentType.FULL_TIME,
+    employmentType: EEmploymentType.PROJECT_BASED,
     workSchedule: null,
     workFormat: EWorkFormat.REMOTE,
     employmentOption: EEmploymentOption.GPH,
@@ -50,8 +50,13 @@ export default {
     vacancies: [
         {
             candidateVacancyId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-            title: 'string',
-            status: 'string',
+            title: 'Frontend Developer (React)',
+            status: 'Скрининг резюме',
+        },
+        {
+            candidateVacancyId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+            title: 'Циркач',
+            status: 'Согласование оффера',
         },
     ],
     createdAt: '2025-05-28T20:08:48.423Z',

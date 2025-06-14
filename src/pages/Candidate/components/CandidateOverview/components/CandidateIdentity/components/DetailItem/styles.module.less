@@ -1,0 +1,28 @@
+@import url('src/styles/mixins.less');
+@import url('src/styles/colors.less');
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.title {
+    .truncate-text();
+
+    width: 180px;
+    color: @coolGray;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.description {
+    .truncate-text();
+
+    width: 400px;
+    color: @black;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+}

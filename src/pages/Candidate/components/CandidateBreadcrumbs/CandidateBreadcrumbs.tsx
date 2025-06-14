@@ -4,7 +4,11 @@ import { ROUTES } from '@router/routes';
 import { Link } from '@tanstack/react-router';
 import styles from './styles.module.less';
 
-export const CandidateBreadcrumbs: React.FC = () => {
+interface IProps {
+    fullName: string;
+}
+
+export const CandidateBreadcrumbs: React.FC<IProps> = ({ fullName }) => {
     return (
         <Box className={styles.box}>
             <Breadcrumbs separator="/" className={styles.breadcrumbs}>
@@ -12,7 +16,7 @@ export const CandidateBreadcrumbs: React.FC = () => {
                     Список кандидатов
                 </Link>
                 <Typography className={styles.number} tag="span">
-                    Кандидат №
+                    {fullName}
                 </Typography>
             </Breadcrumbs>
         </Box>

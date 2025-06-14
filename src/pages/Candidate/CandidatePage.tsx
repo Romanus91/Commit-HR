@@ -6,6 +6,7 @@ import { candidateDetailsRoute } from '@router/index';
 import { Box } from '@components/common/ui-kit';
 import styles from './styles.module.less';
 import { CandidateBreadcrumbs, CandidateMetadata, CandidateOverview } from './components';
+import { getFullName } from '@utils/getFullName';
 
 export const CandidatePage: React.FC = () => {
     const { id } = useParams({ from: candidateDetailsRoute.id });
@@ -16,13 +17,15 @@ export const CandidatePage: React.FC = () => {
         return null;
     }
 
+    const candidateFullName = getFullName(candidateData);
+
     return (
         <PageLayout>
             <Box className={styles.box}>
-                <CandidateBreadcrumbs />
+                <CandidateBreadcrumbs fullName={candidateFullName} />
             </Box>
             <Box className={styles.info}>
-                <CandidateOverview candidateId={id} commentsData={commentsData} />
+                <CandidateOverview candidateId={id} candidateData={candidateData} commentsData={commentsData} />
                 <CandidateMetadata data={candidateData} />
             </Box>
         </PageLayout>

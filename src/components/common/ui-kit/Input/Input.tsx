@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled, TextField, TextFieldProps } from '@mui/material';
 import { InputAdornment } from './components/InputAdornment';
+import { EColor } from '@src/enums';
 
 export type InputProps = TextFieldProps & {
     variant?: 'filled' | 'outlined' | 'standard';
@@ -23,7 +24,7 @@ export const StyledInput = styled(TextField)<InputProps>(({ theme, label, varian
                 padding: label ? '12px 0 7px' : '12px 0',
                 textOverflow: 'ellipsis',
                 '&::placeholder': {
-                    color: '#85818A',
+                    color: EColor.COOL_GRAY,
                     opacity: 1,
                     fontWeight: 500,
                 },

@@ -1,9 +1,15 @@
 export { CardProfile } from './CardProfile';
 export { Checkmark } from './Checkmark';
 export { Clip } from './Clip';
+export { DotsVertical } from './DotsVertical';
+export { EditFile } from './EditFile';
+export { Email } from './Email';
+export { Garbage } from './Garbage';
 export { Grid } from './Grid';
 export { List } from './List';
+export { Phone } from './Phone';
 export { Plus } from './Plus';
 export { Profile } from './Profile';
 export { Star } from './Star';
 export { Search } from './Search';
+export { Telegram } from './Telegram';

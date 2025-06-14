@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@components/common/ui-kit';
+import { Box } from '@components/common/ui-kit';
 import { MetadataItem } from './components/MetadataItem';
 import styles from './styles.module.less';
 import { ICandidateDetailsDTO } from '@src/types/api';
@@ -21,9 +21,8 @@ export const MainMetadata: React.FC<IProps> = ({ data }) => {
 
     return (
         <Box className={styles.container}>
-            <Typography className={styles.number}>Кандидат №</Typography>
-            <Box className={styles.status}>{generalStatusMap[data.generalStatus]}</Box>
             <MetadataItem title="Добавлен" value={dateInfo} />
+            <Box className={styles.status}>{generalStatusMap[data.generalStatus]}</Box>
             <MetadataItem title="Кем добавлен" value={recruiterInfo} />
             {/* TODO: Remove the bottom line */}
             <MetadataItem title="Здесь будут еще поля" value="После того, как будет известно" />

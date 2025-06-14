@@ -1,0 +1,1 @@
+export { VacancyMetaItem } from './VacancyMetaItem';
